@@ -16,11 +16,16 @@ def crime_cluster():
     to_date = request.args.get("todate", default=None)
     crime = request.args.get("crime", default=None)
 
-    from_date = pd.Timestamp(from_date).floor('D') 
-    to_date = pd.Timestamp(to_date).floor('D')
+    from_date = from_date.replace('-','/')
+    to_date = to_date.replace('-','/')
+    
+    from_date = pd.to_datetime(from_date).to_pydatetime()
+    to_date = pd.to_datetime(to_date).to_pydatetime()
+    print(type(from_date))
+    print(type(to_date))
 
     data = pd.read_csv('https://opendata.arcgis.com/datasets/3eeb0a2cbae94b3e8549a8193717a9e1_0.csv?outSR=%7B%22latestWkid%22%3A2248%2C%22wkid%22%3A102685%7D', sep = ',' , header = 'infer')
-    data['CrimeDateTime'] = pd.to_datetime(data['CrimeDateTime'])
+    data['CrimeDateTime'] = pd.to_datetime(data['CrimeDateTime']).dt.tz_localize(None)
     data = data[(data['CrimeDateTime'] > from_date)&(data['CrimeDateTime'] < to_date)]
     data = data[data['Latitude']>0]
     data = data[data['Description']==crime]
