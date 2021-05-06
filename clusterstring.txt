@@ -1,0 +1,1 @@
+http://127.0.0.1:5000/clusters?fromdate=2014-01-01&todate=2014-12-31&crime=HOMICIDE
