@@ -6,14 +6,18 @@ import hdbscan
 
 app = Flask(__name__)
 
+@app.route('/')
+def hello():
+    return 'Hello Baltimore DSC!'
+
 # Selects the page for which a function is to be defined. Right now there will only be one page in your website.
 @app.route('/clusters')
 #Function for clustering Baltimore crime data based on a date range and crime type
 #Run clustering function with parameters
 def crime_cluster():
     
-    from_date = request.args.get("fromdate", default=None)
-    to_date = request.args.get("todate", default=None)
+    from_date = request.args.get("fromDate", default=None)
+    to_date = request.args.get("toDate", default=None)
     crime = request.args.get("crime", default=None)
 
     from_date = from_date.replace('-','/')
@@ -21,8 +25,6 @@ def crime_cluster():
     
     from_date = pd.to_datetime(from_date).to_pydatetime()
     to_date = pd.to_datetime(to_date).to_pydatetime()
-    print(type(from_date))
-    print(type(to_date))
 
     data = pd.read_csv('https://opendata.arcgis.com/datasets/3eeb0a2cbae94b3e8549a8193717a9e1_0.csv?outSR=%7B%22latestWkid%22%3A2248%2C%22wkid%22%3A102685%7D', sep = ',' , header = 'infer')
     data['CrimeDateTime'] = pd.to_datetime(data['CrimeDateTime']).dt.tz_localize(None)

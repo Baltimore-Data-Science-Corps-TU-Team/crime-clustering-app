@@ -1,0 +1,38 @@
+
+<!-- Baltimore Data Science Corps: Towson University Team -->
+
+<!-- Documentation can be found at https://www.tutorialspoint.com/leafletjs/leafletjs_getting_started.htm 
+                                   https://www.igismap.com/add-load-geojson-file-point-polyline-polygon-map-leaflet-js/ -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Baltimore City Data Science </title>
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>               <!-- Leaflet CSS-->
+        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" type="text/javascript"></script>   <!-- Leaflet JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>         <!-- jQuery -->
+        <script type="text/javascript" src="validations.js"></script>
+    </head>
+    
+    <body>
+        <!-- This div tag will be used as an argument for creating the map in the Javascript file-->
+        <div id="map" style="width: 100vw; height: 80vh"></div>
+
+        <script type="text/javascript" src="clusterMap.js"></script>
+
+        <div id="clusterForm">
+            <form id="options" onsubmit="return validateForm();">
+                <label class="fromDate">From Date: </label><input type="date" required="required" name="fromDate" id="fromDate"/>
+                <br/>
+                <label class="toDate">To Date: </label><input type="date" required="required" name="toDate" id="toDate"/>
+                <br/>
+                <select name="crime" id="crime">
+                    <option value="HOMICIDE">HOMICIDE</option>
+                    <option value="LARCENY">LARCENY</option>
+                </select>
+                <br/>
+                <input id="submitButton" type="submit" value="View Clusters"/>
+            </form>
+        </div>
+    </body>
+</html>
