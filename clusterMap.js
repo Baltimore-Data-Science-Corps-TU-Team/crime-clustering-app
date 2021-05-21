@@ -57,13 +57,17 @@ function addClusters(map){
     qstring = qstring.replace("?","").replace("%40","@");
     qstring = qstring.split("&");
 
-    qstring[0] = qstring[0].replace("toDate=","");
-    qstring[1] = qstring[1].replace("fromDate=","");
+    console.log(qstring[0]);
+    console.log(qstring[1]);
+    console.log(qstring[2]);
+
+    qstring[0] = qstring[0].replace("fromDate=","");
+    qstring[1] = qstring[1].replace("toDate=","");
     qstring[2] = qstring[2].replace("crime=","");
 
-    var toDate = qstring[0];
-    var fromDate = qstring[1];
-    var crime = qstring[2];
+    var fromDate = qstring[0]
+    var toDate = qstring[1]
+    var crime = qstring[2]
 
     console.log(fromDate);
     console.log(toDate);
