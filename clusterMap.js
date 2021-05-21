@@ -10,7 +10,7 @@
 
     let map = createMap(centerOfBaltimore);
     setTileLayer(map, mapOSM);
-    //addClusters(map);
+    addClusters(map);
 
     // loading GeoJSON file - Here my html and usa_adm.geojson file resides in same folder
     $.getJSON("BaltimoreCityLine.geojson",function(data){
@@ -52,9 +52,18 @@ function setTileLayer(map, mapProvider) {
 }
 
 function addClusters(map){
-    var fromDate = window.document.forms["options"]["fromDate"].value;
-    var toDate = window.document.forms["options"]["toDate"].value;
-    var crime = window.document.forms["options"]["crime"].value;
+    var qstring = location.search;
+
+    qstring = qstring.replace("?","").replace("%40","@");
+    qstring = qstring.split("&");
+
+    qstring[0] = qstring[0].replace("toDate=","");
+    qstring[1] = qstring[1].replace("fromDate=","");
+    qstring[2] = qstring[2].replace("crime=","");
+
+    var toDate = qstring[0];
+    var fromDate = qstring[1];
+    var crime = qstring[2];
 
     console.log(fromDate);
     console.log(toDate);

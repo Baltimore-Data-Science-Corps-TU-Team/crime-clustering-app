@@ -1,1 +1,1 @@
-http://localhost:5000/clusters?fromDate=2014-01-01&toDate=2014-12-31&crime=HOMICIDE
+http://localhost:5000/clusters?fromdate=2014-01-01&todate=2014-12-31&crime=HOMICIDE
