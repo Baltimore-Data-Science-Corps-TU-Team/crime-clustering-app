@@ -36,7 +36,7 @@ def crime_cluster():
     fit = model.fit(coords)
     labels = fit.labels_.reshape(fit.labels_.shape[0],-1)
     arr = np.concatenate((coords,labels),axis=1)
-    df = pd.DataFrame(arr, columns = ['Latitude','Longitude','Cluster'])
+    df = pd.DataFrame(arr, columns = ['Longitude','Latitude','Cluster'])
     df.Cluster.astype(int)
     gdf = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df.Longitude,df.Latitude))
     clus_geojson = gdf.to_json()
