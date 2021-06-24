@@ -27,7 +27,7 @@ function App() {
     //   //window.location.reload();
 
     const fetchAPI = () => {
-      const data = axios.get('./data/BaltimoreCityLine.json')
+      const data = axios.get(`${SERVER}/clusters?fromdate=${fromdate}&todate=${todate}&crime=${crime}`) // replace with flask endpoint URL $'localhost:5000/api?fromDate={fromDate}
         .then(response => response.data)
         .catch(err => {
           console.log(err);
